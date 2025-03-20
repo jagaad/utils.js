@@ -1,3 +1,5 @@
+export type StrictOmit<T, K extends keyof T> = Omit<T, K>;
+
 export type Optional<T> = T | undefined;
 export type Nullable<T> = T | null;
 export type Maybe<T> = T | undefined | null;
