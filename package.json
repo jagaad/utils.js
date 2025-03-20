@@ -1,0 +1,36 @@
+{
+	"name": "@jagaad/utils",
+	"version": "0.0.0",
+	"description": "A collection of JavaScript/TypeScript utility functions and helpers for Jagaad projects",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 0",
+		"prepare": "husky",
+		"build": "tsc --declaration --declarationMap"
+	},
+	"engines": {
+		"node": ">=20",
+		"npm": ">=10"
+	},
+	"main": "dist/index.js",
+	"module": "dist/index.js",
+	"types": "dist/index.d.ts",
+	"keywords": [],
+	"author": "Jagaad <contact@jagaad.com>",
+	"license": "MIT",
+	"type": "module",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/jagaad/utils.js.git"
+	},
+	"devDependencies": {
+		"@commitlint/cli": "^19.8.0",
+		"@commitlint/config-conventional": "^19.8.0",
+		"@jagaad/prettier-config": "^1.1.1",
+		"@jagaad/tsconfig-bases": "^0.2.0",
+		"husky": "^9.1.7",
+		"lint-staged": "^15.5.0",
+		"np": "^10.2.0",
+		"prettier": "^3.5.3",
+		"typescript": "^5.8.2"
+	}
+}

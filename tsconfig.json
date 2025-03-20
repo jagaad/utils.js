@@ -1,0 +1,11 @@
+{
+	"extends": "@jagaad/tsconfig-bases",
+	"compilerOptions": {
+		"outDir": "./dist",
+		"target": "ES2020",
+		"module": "NodeNext",
+		"resolveJsonModule": false,
+		"erasableSyntaxOnly": true,
+		"skipLibCheck": true
+	}
+}
