@@ -18,3 +18,15 @@ export function wrap(val: number, min: number, max: number): number {
 export function inRange(val: number, min: number, max: number) {
 	return Math.min(min, max) <= val && val <= Math.max(min, max);
 }
+
+export function percentage(val: number, max: number) {
+	return (val * 100) / max;
+}
+
+export function bytesToMegabytes(size: number) {
+	return (size / 1024 / 1024).toFixed(2);
+}
+
+export function normalizeRatio(val: number, min: number, max: number): number {
+	return (val - min) / (max - min);
+}
