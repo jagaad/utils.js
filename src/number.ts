@@ -30,3 +30,11 @@ export function bytesToMegabytes(size: number) {
 export function normalizeRatio(val: number, min: number, max: number): number {
 	return (val - min) / (max - min);
 }
+
+export function* range(start: number, end: number, step = 1) {
+	const delta = Math.abs(start - end);
+	const direction = start < end ? 1 : -1;
+	for (let i = 0; i <= delta; i += step) {
+		yield start + i * direction;
+	}
+}
