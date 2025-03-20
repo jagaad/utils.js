@@ -31,6 +31,7 @@
 		"@commitlint/config-conventional": "^19.8.0",
 		"@jagaad/prettier-config": "^1.1.1",
 		"@jagaad/tsconfig-bases": "^0.2.0",
+		"@total-typescript/ts-reset": "^0.6.1",
 		"husky": "^9.1.7",
 		"lint-staged": "^15.5.0",
 		"np": "^10.2.0",
@@ -38,7 +39,6 @@
 		"typescript": "^5.8.2"
 	},
 	"dependencies": {
-		"@total-typescript/ts-reset": "^0.6.1",
 		"type-fest": "^4.37.0"
 	}
 }

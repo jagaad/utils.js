@@ -1,5 +1,3 @@
-import '@total-typescript/ts-reset';
-
 export * from './array.js';
 export * from './date.js';
 export * from './number.js';
