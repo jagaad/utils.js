@@ -5,7 +5,7 @@
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 0",
 		"prepare": "husky",
-		"build": "rm -rf ./dist && tsc --declaration --declarationMap",
+		"build": "tsup",
 		"prepublishOnly": "npm run build"
 	},
 	"engines": {
