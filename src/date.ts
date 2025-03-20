@@ -1,5 +1,10 @@
+import type { Tagged } from 'type-fest';
 import type { Maybe, Optional } from './types.js';
 
+export type ValidDate = Tagged<Date, 'valid'>;
+
+export function getDateString(date: ValidDate): string;
+export function getDateString(date: Date): Optional<string>;
 export function getDateString(
 	date?: Maybe<Date | string | number>,
 ): Optional<string> {
