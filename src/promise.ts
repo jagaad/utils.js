@@ -17,12 +17,12 @@ export async function settled<T>(
 	return first;
 }
 
-export type Success<T> = {
+export type Success<T> = [T, null] & {
 	data: T;
 	error: null;
 };
 
-export type Failure<E> = {
+export type Failure<E> = [null, E] & {
 	data: null;
 	error: E;
 };
@@ -34,8 +34,8 @@ export async function tryCatch<T, E = Error>(
 ): Promise<Result<T, E>> {
 	try {
 		const data = await promise;
-		return { data, error: null };
+		return Object.assign([data, null], { data, error: null }) as Result<T, E>;
 	} catch (error) {
-		return { data: null, error: error as E };
+		return Object.assign([null, error], { data: null, error }) as Result<T, E>;
 	}
 }
