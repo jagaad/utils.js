@@ -20,3 +20,9 @@ export function getDateString(
 
 	return date.toISOString().split('T')[0];
 }
+
+export function toDate(value: Maybe<string | number | Date>) {
+	if (value == null) return undefined;
+	const date = new Date(value);
+	return Number.isNaN(date.getTime()) ? undefined : date;
+}
