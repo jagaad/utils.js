@@ -1,6 +1,6 @@
 {
 	"name": "@jagaad/utils",
-	"version": "0.5.1",
+	"version": "0.6.0",
 	"description": "A collection of JavaScript/TypeScript utility functions and helpers for Jagaad projects",
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 0",
