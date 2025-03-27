@@ -51,3 +51,36 @@ export function getSearchParams(
 		return undefined;
 	}
 }
+
+export function getTopLevelDomain(url?: Maybe<string>): Optional<string> {
+	if (!url) return undefined;
+
+	try {
+		const parts = new URL(url).hostname.split('.');
+		return parts.at(-1);
+	} catch {
+		return undefined;
+	}
+}
+
+export function getSecondLevelDomain(url?: Maybe<string>): Optional<string> {
+	if (!url) return undefined;
+
+	try {
+		const parts = new URL(url).hostname.split('.');
+		return parts.at(-2);
+	} catch {
+		return undefined;
+	}
+}
+
+export function getSubdomainSegments(url?: Maybe<string>): Optional<string[]> {
+	if (!url) return undefined;
+
+	try {
+		const parts = new URL(url).hostname.split('.');
+		return parts.slice(0, -1);
+	} catch {
+		return undefined;
+	}
+}

@@ -26,3 +26,7 @@ export function toDate(value: Maybe<string | number | Date>) {
 	const date = new Date(value);
 	return Number.isNaN(date.getTime()) ? undefined : date;
 }
+
+export function isBetween(date: Date, min: Date, max: Date): boolean {
+	return min <= date && date <= max;
+}
