@@ -2,8 +2,12 @@ export function isType<T extends keyof TypeMap>(
 	value: unknown,
 	type: T,
 ): value is TypeMap[T] {
+	return getType(value) === type;
+}
+
+export function getType(value: unknown): keyof TypeMap | (string & {}) {
 	const s = Object.prototype.toString.call(value);
-	return s.slice(8, -1).toLowerCase() === type;
+	return s.slice(8, -1).toLowerCase();
 }
 
 type TypeMap = {
