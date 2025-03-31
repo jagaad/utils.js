@@ -1,4 +1,4 @@
-export function getType<T extends keyof TypeMap>(
+export function isType<T extends keyof TypeMap>(
 	value: unknown,
 	type: T,
 ): value is TypeMap[T] {
