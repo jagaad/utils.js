@@ -30,3 +30,22 @@ export function toDate(value: Maybe<string | number | Date>) {
 export function isBetween(date: Date, min: Date, max: Date): boolean {
 	return min <= date && date <= max;
 }
+
+export function formatDate(
+	date: Maybe<string | number | Date>,
+	params?: {
+		locales?: Intl.LocalesArgument;
+		options?: Intl.DateTimeFormatOptions;
+	},
+): string | undefined {
+	if (date == null) return undefined;
+
+	date = new Date(date);
+
+	// Invalid Date
+	if (Number.isNaN(date.getTime())) return date.toString();
+
+	const formatter = new Intl.DateTimeFormat(params?.locales, params?.options);
+
+	return formatter.format(date);
+}
