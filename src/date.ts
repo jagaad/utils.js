@@ -31,6 +31,11 @@ export function isBetween(date: Date, min: Date, max: Date): boolean {
 	return min <= date && date <= max;
 }
 
+const defaultOptions: Intl.DateTimeFormatOptions = {
+	dateStyle: 'short',
+	timeStyle: 'short',
+};
+
 export function formatDate(
 	date: Maybe<string | number | Date>,
 	params?: {
@@ -45,7 +50,9 @@ export function formatDate(
 	// Invalid Date
 	if (Number.isNaN(date.getTime())) return date.toString();
 
-	const formatter = new Intl.DateTimeFormat(params?.locales, params?.options);
+	const { locales, options = defaultOptions } = params ?? {};
+
+	const formatter = new Intl.DateTimeFormat(locales, options);
 
 	return formatter.format(date);
 }
