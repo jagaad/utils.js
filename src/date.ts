@@ -3,6 +3,10 @@ import type { Maybe, Nullable, Optional } from './types.js';
 
 export type ValidDate = Tagged<Date, 'valid'>;
 
+export function isValidDate(date: Date): date is ValidDate {
+	return date instanceof Date && !Number.isNaN(date.getTime());
+}
+
 export function getDateString(date: ValidDate): string;
 export function getDateString(
 	date?: Maybe<Date | string | number>,
