@@ -8,6 +8,6 @@ export function filterUndefined<T>(
 	return Object.fromEntries(filtered);
 }
 
-export function hasFields(obj: object): boolean {
+export function isNonEmptyObject(obj: object): boolean {
 	return Object.keys(filterUndefined(obj)).length > 0;
 }
