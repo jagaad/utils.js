@@ -1,5 +1,5 @@
 import type { Tagged } from 'type-fest';
-import type { Maybe, Nullable, Optional } from './types.js';
+import type { Maybe, Optional } from './types.js';
 
 export type ValidDate = Tagged<Date, 'valid'>;
 
@@ -23,6 +23,24 @@ export function getDateString(
 	if (Number.isNaN(date.getTime())) return undefined;
 
 	return date.toISOString().split('T')[0];
+}
+
+export function getDateTimeString(date: ValidDate): string;
+export function getDateTimeString(
+	date?: Maybe<Date | string | number>,
+): Optional<string>;
+export function getDateTimeString(
+	date?: Maybe<Date | string | number>,
+): Optional<string> {
+	if (date == null) return undefined;
+
+	// Convert to Date
+	if (!(date instanceof Date)) date = new Date(date);
+
+	// Invalid Date
+	if (Number.isNaN(date.getTime())) return undefined;
+
+	return date.toISOString().split('.')[0];
 }
 
 export function toDate(value: Maybe<string | number | Date>) {
