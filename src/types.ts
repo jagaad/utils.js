@@ -15,8 +15,16 @@ export type ExtractIdentityFunction<T> = T extends (arg: infer U) => infer V
 
 export type ID = string | number;
 
-export type Option<T extends ID = ID> = {
+/**
+ * @deprecated Use {@link Choice} instead. Option shadows global [Option Constructor](https://developer.mozilla.org/en-US/docs/Web/API/HTMLOptionElement/Option)
+ */
+export type Option<T extends ID = ID> = Choice<T>;
+
+/**
+ * @since 0.15.0
+ */
+export type Choice<T extends ID = ID> = {
 	id: T;
 	name: string;
-	children?: ReadonlyArray<Option<T>>;
+	children?: ReadonlyArray<Choice<T>>;
 };
