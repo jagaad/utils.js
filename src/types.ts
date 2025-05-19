@@ -28,3 +28,5 @@ export type Choice<T extends ID = ID> = {
 	name: string;
 	children?: ReadonlyArray<Choice<T>>;
 };
+
+export type ReadonlyArrayStrict<T> = ReadonlyArray<Readonly<T>>;
