@@ -30,3 +30,7 @@ export type Choice<T extends ID = ID> = {
 };
 
 export type ReadonlyArrayStrict<T> = ReadonlyArray<Readonly<T>>;
+
+export type DeepWriteable<T> = {
+	-readonly [P in keyof T]: DeepWriteable<T[P]>;
+};
