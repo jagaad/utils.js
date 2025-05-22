@@ -31,7 +31,11 @@ const clampedValue = clamp(10, 20, 30);
 
 ## Available Utilities
 
-Please browse the repository [source code](./src/) to know more about available utilities
+Please browse the repository [source code](./src/) to know more details
+
+<!-- API-MARKER -->
+
+<!-- API-MARKER -->
 
 ## Contributing
 
