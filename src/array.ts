@@ -1,5 +1,5 @@
 import type { Arrayable } from 'type-fest';
-import type { Maybe, Optional, ReadonlyArrayStrict } from './types.js';
+import type { Choice, Maybe, Optional, ReadonlyArrayStrict } from './types.js';
 
 export function firstOrSelf<T>(value?: Maybe<Arrayable<T>>): Optional<T> {
 	if (!value) return undefined;
@@ -63,4 +63,10 @@ export function getIndexMeta(
 			return index % 2 === 0;
 		},
 	};
+}
+
+export function choicesToRecord(
+	choices: ReadonlyArrayStrict<Choice>,
+): Record<string, string> {
+	return Object.fromEntries(choices.map((choice) => [choice.id, choice.name]));
 }
