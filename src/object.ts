@@ -1,4 +1,4 @@
-import type { Choice, ReadonlyArrayStrict } from './types';
+import type { Choice, Maybe, ReadonlyArrayStrict } from './types';
 
 export function filterUndefined<T>(
 	obj: Partial<Record<string, T>>,
@@ -15,7 +15,7 @@ export function isNonEmptyObject(obj: object): boolean {
 }
 
 export function recordToChoices(
-	record: Readonly<Record<string, string>>,
+	record: Maybe<Readonly<Record<string, string>>>,
 ): Choice[] {
-	return Object.entries(record).map(([id, name]) => ({ id, name }));
+	return Object.entries(record ?? {}).map(([id, name]) => ({ id, name }));
 }

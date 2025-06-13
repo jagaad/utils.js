@@ -66,7 +66,9 @@ export function getIndexMeta(
 }
 
 export function choicesToRecord(
-	choices: ReadonlyArrayStrict<Choice>,
+	choices: Maybe<ReadonlyArrayStrict<Choice>>,
 ): Record<string, string> {
-	return Object.fromEntries(choices.map((choice) => [choice.id, choice.name]));
+	return Object.fromEntries(
+		(choices ?? []).map((choice) => [choice.id, choice.name]),
+	);
 }
