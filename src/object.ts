@@ -1,7 +1,7 @@
-import type { Choice, Maybe, ReadonlyArrayStrict } from './types';
+import type { Choice, Maybe } from './types';
 
 export function filterUndefined<T>(
-	obj: Partial<Record<string, T>>,
+	obj: Partial<Readonly<Record<string, T>>>,
 ): Record<string, T> {
 	const entries = Object.entries(obj);
 	const filtered = entries.filter(
@@ -10,8 +10,17 @@ export function filterUndefined<T>(
 	return Object.fromEntries(filtered);
 }
 
+export function hasOwnKeys(obj: object): boolean {
+	return Object.keys(obj).length > 0;
+}
+
+export function hasOwnDefinedKeys(obj: object): boolean {
+	return hasOwnKeys(filterUndefined(obj));
+}
+
+/** @deprecated Use `hasOwnDefinedKeys` instead. */
 export function isNonEmptyObject(obj: object): boolean {
-	return Object.keys(filterUndefined(obj)).length > 0;
+	return hasOwnDefinedKeys(obj);
 }
 
 export function recordToChoices(
