@@ -10,11 +10,13 @@ export function filterUndefined<T>(
 	return Object.fromEntries(filtered);
 }
 
-export function hasOwnKeys(obj: object): boolean {
+export function hasOwnKeys(obj: Maybe<object>): boolean {
+	if (!obj) return false;
 	return Object.keys(obj).length > 0;
 }
 
-export function hasOwnDefinedKeys(obj: object): boolean {
+export function hasOwnDefinedKeys(obj: Maybe<object>): boolean {
+	if (!obj) return false;
 	return hasOwnKeys(filterUndefined(obj));
 }
 
