@@ -1,8 +1,24 @@
 import type { Arrayable } from 'type-fest';
 import type { Choice, Maybe, Optional, ReadonlyArrayStrict } from './types.js';
 
-export function firstOrSelf<T>(value?: Maybe<Arrayable<T>>): Optional<T> {
-	if (!value) return undefined;
+/**
+ * Returns the first element of an array or the value itself if it's not an array.
+ *
+ * ```ts
+ * import { firstOrSelf } from '@jagaad/utils';
+ *
+ * const singleValue = firstOrSelf('Hello'); // 'Hello'
+ * const arrayValue = firstOrSelf(['Hello', 'World']); // 'Hello'
+ * const emptyArray = firstOrSelf([]); // undefined
+ * const nullValue = firstOrSelf(null); // undefined
+ * const undefinedValue = firstOrSelf(undefined); // undefined
+ * const numberValue = firstOrSelf(42); // 42
+ * const emptyString = firstOrSelf(''); // ''
+ * const booleanValue = firstOrSelf(false); // false
+ * ```
+ */
+export function firstOrSelf<T>(value: Maybe<Arrayable<T>>): Optional<T> {
+	if (value == null) return undefined;
 
 	if (Array.isArray(value)) {
 		return value.at(0);
