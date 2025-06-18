@@ -1,0 +1,7 @@
+{
+	"$schema": "https://typedoc.org/schema.json",
+	"entryPointStrategy": "expand",
+	"entryPoints": ["./src"],
+	"exclude": ["./src/index.ts"],
+	"out": "./auto-docs"
+}
