@@ -1,6 +1,15 @@
 import type { Maybe, Optional } from './types.js';
 
-export function getHost(url?: Maybe<string>): Optional<string> {
+/**
+ * Extracts the host from a URL string.
+ *
+ * ```ts
+ * getHost('https://example.com/path?query=123'); // 'example.com'
+ * getHost('https://example.com:8080/path?query=123'); // 'example.com:8080'
+ * getHost('invalid-url'); // undefined
+ * ```
+ */
+export function getHost(url: Maybe<string>): Optional<string> {
 	if (!url) return undefined;
 
 	try {
@@ -10,7 +19,16 @@ export function getHost(url?: Maybe<string>): Optional<string> {
 	}
 }
 
-export function getOrigin(url?: Maybe<string>): Optional<string> {
+/**
+ * Extracts the origin from a URL string.
+ *
+ * ```ts
+ * getOrigin('https://example.com/path?query=123'); // 'https://example.com'
+ * getOrigin('https://example.com:8080/path?query=123'); // 'https://example.com:8080'
+ * getOrigin('invalid-url'); // undefined
+ * ```
+ */
+export function getOrigin(url: Maybe<string>): Optional<string> {
 	if (!url) return undefined;
 
 	try {
@@ -20,7 +38,15 @@ export function getOrigin(url?: Maybe<string>): Optional<string> {
 	}
 }
 
-export function getPathname(url?: Maybe<string>): Optional<string> {
+/**
+ * Extracts the pathname from a URL string.
+ *
+ * ```ts
+ * getPathname('https://example.com/path?query=123'); // '/path'
+ * getPathname('invalid-url'); // undefined
+ * ```
+ */
+export function getPathname(url: Maybe<string>): Optional<string> {
 	if (!url) return undefined;
 
 	try {
@@ -30,7 +56,16 @@ export function getPathname(url?: Maybe<string>): Optional<string> {
 	}
 }
 
-export function getHostname(url?: Maybe<string>): Optional<string> {
+/**
+ * Extracts the hostname from a URL string.
+ *
+ * ```ts
+ * getHostname('https://sub.example.com/path?query=123'); // 'sub.example.com'
+ * getHostname('https://sub.example.com:8080/path?query=123'); // 'sub.example.com'
+ * getHostname('invalid-url'); // undefined
+ * ```
+ */
+export function getHostname(url: Maybe<string>): Optional<string> {
 	if (!url) return undefined;
 
 	try {
@@ -40,9 +75,16 @@ export function getHostname(url?: Maybe<string>): Optional<string> {
 	}
 }
 
-export function getSearchParams(
-	url?: Maybe<string>,
-): Optional<URLSearchParams> {
+/**
+ * Extracts the search parameters from a URL string as a `URLSearchParams` object.
+ *
+ * ```ts
+ * getSearchParams('https://example.com/path?query=123&foo=bar'); // URLSearchParams { 'query' => '123', 'foo' => 'bar' }
+ * getSearchParams('https://example.com/path'); // URLSearchParams {}
+ * getSearchParams('invalid-url'); // undefined
+ * ```
+ */
+export function getSearchParams(url: Maybe<string>): Optional<URLSearchParams> {
 	if (!url) return undefined;
 
 	try {
@@ -52,7 +94,16 @@ export function getSearchParams(
 	}
 }
 
-export function getTopLevelDomain(url?: Maybe<string>): Optional<string> {
+/**
+ * Extracts the top-level domain (TLD) from a URL string.
+ *
+ * ```ts
+ * getTopLevelDomain('https://example.com/path?query=123'); // 'com'
+ * getTopLevelDomain('https://sub.example.co.uk/path?query=123'); // 'uk'
+ * getTopLevelDomain('invalid-url'); // undefined
+ * ```
+ */
+export function getTopLevelDomain(url: Maybe<string>): Optional<string> {
 	if (!url) return undefined;
 
 	try {
@@ -63,7 +114,16 @@ export function getTopLevelDomain(url?: Maybe<string>): Optional<string> {
 	}
 }
 
-export function getSecondLevelDomain(url?: Maybe<string>): Optional<string> {
+/**
+ * Extracts the second-level domain (SLD) from a URL string.
+ *
+ * ```ts
+ * getSecondLevelDomain('https://example.com/path?query=123'); // 'example'
+ * getSecondLevelDomain('https://sub.example.co.uk/path?query=123'); // 'co'
+ * getSecondLevelDomain('invalid-url'); // undefined
+ * ```
+ */
+export function getSecondLevelDomain(url: Maybe<string>): Optional<string> {
 	if (!url) return undefined;
 
 	try {
@@ -74,7 +134,16 @@ export function getSecondLevelDomain(url?: Maybe<string>): Optional<string> {
 	}
 }
 
-export function getSubdomainSegments(url?: Maybe<string>): Optional<string[]> {
+/**
+ * Extracts the subdomain segments from a URL string.
+ *
+ * ```ts
+ * getSubdomainSegments('https://sub.example.com/path?query=123'); // ['sub', 'example']
+ * getSubdomainSegments('https://example.com/path?query=123'); // ['example']
+ * getSubdomainSegments('invalid-url'); // undefined
+ * ```
+ */
+export function getSubdomainSegments(url: Maybe<string>): Optional<string[]> {
 	if (!url) return undefined;
 
 	try {

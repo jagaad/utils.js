@@ -5,14 +5,14 @@ import type { Choice, Maybe, Optional, ReadonlyArrayStrict } from './types.js';
  * Returns the first element of an array or the value itself if it's not an array.
  *
  * ```ts
- * const singleValue = firstOrSelf('Hello'); // 'Hello'
- * const arrayValue = firstOrSelf(['Hello', 'World']); // 'Hello'
- * const emptyArray = firstOrSelf([]); // undefined
- * const nullValue = firstOrSelf(null); // undefined
- * const undefinedValue = firstOrSelf(undefined); // undefined
- * const numberValue = firstOrSelf(0); // 0
- * const emptyString = firstOrSelf(''); // ''
- * const booleanValue = firstOrSelf(false); // false
+ * firstOrSelf('Hello'); // 'Hello'
+ * firstOrSelf(['Hello', 'World']); // 'Hello'
+ * firstOrSelf([]); // undefined
+ * firstOrSelf(null); // undefined
+ * firstOrSelf(undefined); // undefined
+ * firstOrSelf(0); // 0
+ * firstOrSelf(''); // ''
+ * firstOrSelf(false); // false
  * ```
  */
 export function firstOrSelf<T>(value: Maybe<Arrayable<T>>): Optional<T> {
@@ -29,9 +29,7 @@ export function firstOrSelf<T>(value: Maybe<Arrayable<T>>): Optional<T> {
  * Inserts a separator between each element of the array.
  *
  * ```ts
- * import { intersperse } from '@jagaad/utils';
- *
- * const result = intersperse(['a', 'b', 'c'], '-'); // ['a', '-', 'b', '-', 'c']
+ * intersperse(['a', 'b', 'c'], '-'); // ['a', '-', 'b', '-', 'c']
  */
 export function intersperse<T>(array: ReadonlyArray<T>, separator: T): T[] {
 	return [...Array(2 * array.length - 1)].map((_, i) =>
@@ -43,8 +41,7 @@ export function intersperse<T>(array: ReadonlyArray<T>, separator: T): T[] {
  * Returns a random item from the given array.
  *
  * ```ts
- * const items = ['apple', 'banana', 'cherry'];
- * const random = randomItem(items); // Could be 'apple', 'banana', or 'cherry'
+ * randomItem(['apple', 'banana', 'cherry']); // Could be 'apple', 'banana', or 'cherry'
  * ```
  *
  * @deprecated Use `sample` from `es-toolkit` instead.
