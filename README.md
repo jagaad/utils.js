@@ -29,10 +29,6 @@ import { clamp } from '@jagaad/utils';
 const clampedValue = clamp(10, 20, 30);
 ```
 
-## Available Utilities
-
-Please browse the repository [source code](./src/) to know more about available utilities
-
 ## Contributing
 
 Contributions are welcome! Please feel free to submit a Pull Request.

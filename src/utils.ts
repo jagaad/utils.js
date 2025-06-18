@@ -10,7 +10,7 @@ export function getType(value: unknown): keyof TypeMap | (string & {}) {
 	return s.slice(8, -1).toLowerCase();
 }
 
-type TypeMap = {
+export type TypeMap = {
 	string: string;
 	number: number;
 	bigint: bigint;
