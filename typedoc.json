@@ -3,5 +3,8 @@
 	"entryPointStrategy": "expand",
 	"entryPoints": ["./src"],
 	"exclude": ["./src/index.ts"],
-	"out": "./auto-docs"
+	"out": "./auto-docs",
+	"headings": {
+		"readme": false
+	}
 }
