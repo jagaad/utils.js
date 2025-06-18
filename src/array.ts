@@ -30,6 +30,7 @@ export function firstOrSelf<T>(value: Maybe<Arrayable<T>>): Optional<T> {
  *
  * ```ts
  * intersperse(['a', 'b', 'c'], '-'); // ['a', '-', 'b', '-', 'c']
+ * ```
  */
 export function intersperse<T>(array: ReadonlyArray<T>, separator: T): T[] {
 	return [...Array(2 * array.length - 1)].map((_, i) =>

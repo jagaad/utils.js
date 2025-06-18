@@ -1,3 +1,6 @@
+/**
+ * Strictly omits keys from an object type.
+ */
 export type StrictOmit<T, K extends keyof T> = Omit<T, K>;
 
 export type Optional<T> = T | undefined;
@@ -29,6 +32,9 @@ export type Choice<T extends ID = ID> = {
 	children?: ReadonlyArray<Choice<T>>;
 };
 
+/**
+ * A read-only array type that ensures all elements are read-only.
+ */
 export type ReadonlyArrayStrict<T> = ReadonlyArray<Readonly<T>>;
 
 export type DeepWriteable<T> = {
