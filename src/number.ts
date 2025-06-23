@@ -123,7 +123,8 @@ export function* range(
 	}
 }
 
-export type PayRateUnit = 'hour' | 'day' | 'week' | 'month' | 'year';
+export const payRateUnits = ['hour', 'day', 'week', 'month', 'year'] as const;
+export type PayRateUnit = (typeof payRateUnits)[number];
 export interface PayRate {
 	value: number;
 	unit: PayRateUnit;
