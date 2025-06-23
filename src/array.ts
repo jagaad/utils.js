@@ -130,7 +130,7 @@ export function choicesToRecord(
 }
 
 /**
- * Checks if two arrays are equal in a symmetric difference manner.
+ * Checks if two arrays are equal in a [symmetric difference](https://en.wikipedia.org/wiki/Symmetric_difference) manner.
  *
  * ```ts
  * isNullSymetricDifference([1, 2, 3], [3, 2, 1]); // true
