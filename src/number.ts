@@ -122,3 +122,45 @@ export function* range(
 		yield start + i * direction;
 	}
 }
+
+export type PayRateUnit = 'hour' | 'day' | 'week' | 'month' | 'year';
+export interface PayRate {
+	value: number;
+	unit: PayRateUnit;
+}
+
+const HOURS_PER_DAY = 8;
+const DAYS_PER_WEEK = 5;
+const WEEKS_PER_YEAR = 52;
+const MONTHS_PER_YEAR = 12;
+const HOURS_PER_WEEK = HOURS_PER_DAY * DAYS_PER_WEEK;
+const HOURS_PER_YEAR = HOURS_PER_DAY * DAYS_PER_WEEK * WEEKS_PER_YEAR;
+const HOURS_PER_MONTH = HOURS_PER_YEAR / MONTHS_PER_YEAR;
+
+const toHour: Record<PayRateUnit, number> = {
+	hour: 1,
+	day: HOURS_PER_DAY,
+	week: HOURS_PER_WEEK,
+	month: HOURS_PER_MONTH,
+	year: HOURS_PER_YEAR,
+};
+
+/**
+ * Converts a pay rate from one unit to another considering a standard work week of 40 hours.
+ *
+ * ```ts
+ * convertPayRate({ value: 100, unit: 'hour' }, 'day'); // { value: 800, unit: 'day' }
+ * convertPayRate({ value: 100, unit: 'day' }, 'hour'); // { value: 12.5, unit: 'hour' }
+ * convertPayRate({ value: 100, unit: 'week' }, 'month'); // { value: 433.33, unit: 'month' }
+ * convertPayRate({ value: 100, unit: 'year' }, 'week'); // { value: 1.92, unit: 'week' }
+ * convertPayRate({ value: 100, unit: 'month' }, 'year'); // { value: 1200, unit: 'year' }
+ * ```
+ */
+export function convertPayRate(
+	payRate: PayRate,
+	payRateUnit: PayRateUnit,
+): PayRate {
+	const hourlyValue = payRate.value / toHour[payRate.unit];
+	const newValue = hourlyValue * toHour[payRateUnit];
+	return { value: parseFloat(newValue.toFixed(2)), unit: payRateUnit };
+}
