@@ -128,3 +128,27 @@ export function choicesToRecord(
 		(choices ?? []).map((choice) => [choice.id, choice.name]),
 	);
 }
+
+/**
+ * Checks if two arrays are equal in a symmetric difference manner.
+ *
+ * ```ts
+ * isNullSymetricDifference([1, 2, 3], [3, 2, 1]); // true
+ * isNullSymetricDifference([1, 2, 3], [3, 2]); // false
+ * ```
+ */
+export function isNullSymetricDifference<T>(
+	a: Maybe<ReadonlyArray<T>>,
+	b: Maybe<ReadonlyArray<T>>,
+): boolean {
+	const setA = new Set(a);
+	const setB = new Set(b);
+
+	if (setA.size !== setB.size) return false;
+
+	for (const item of setA) {
+		if (!setB.has(item)) return false;
+	}
+
+	return true;
+}
