@@ -67,18 +67,57 @@ export function inRange(val: number, min: number, max: number): boolean {
  * percentage(0, 100); // 0
  * percentage(100, 0); // 0 (avoids division by zero)
  * percentage(75, 300); // 25
+ * percentage(null, 100); // undefined
+ * percentage(50, null); // undefined
  * ```
  */
-export function percentage(val: number, max: number): number {
+export function percentage(
+	val: Maybe<number>,
+	max: Maybe<number>,
+): Optional<number> {
+	if (val == null || max == null) return undefined;
 	if (max === 0) return 0; // Avoid division by zero
 	return (val * 100) / max;
 }
 
 /**
  * Converts a size in bytes to a string representation in megabytes.
+ *
+ * @deprecated use {@link convertDigitalUnit} instead for more flexibility.
  */
 export function bytesToMegabytes(size: number): string {
 	return (size / 1024 / 1024).toFixed(2);
+}
+
+export const digitalUnits = ['B', 'KB', 'MB', 'GB', 'TB'] as const;
+export type DigitalUnit = (typeof digitalUnits)[number];
+
+const unitMultipliers: Record<DigitalUnit, number> = {
+	B: 1,
+	KB: 1024,
+	MB: 1024 ** 2,
+	GB: 1024 ** 3,
+	TB: 1024 ** 4,
+};
+
+/**
+ * Converts a value from one digital unit to another.
+ *
+ * ```ts
+ * convertDigitalUnit(1024, 'B', 'KB'); // 1
+ * convertDigitalUnit(1, 'MB', 'GB'); // 0.001
+ * convertDigitalUnit(1, 'GB', 'TB'); // 0.001
+ * convertDigitalUnit(1, 'TB', 'GB'); // 1024
+ * convertDigitalUnit(1, 'KB', 'B'); // 1024
+ * ```
+ */
+export function convertDigitalUnit(
+	value: number,
+	from: DigitalUnit,
+	to: DigitalUnit,
+): number {
+	const bytes = value * unitMultipliers[from];
+	return bytes / unitMultipliers[to];
 }
 
 /**
