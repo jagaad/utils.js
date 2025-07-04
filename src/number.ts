@@ -204,3 +204,23 @@ export function convertPayRate(
 	const newValue = hourlyValue * toHour[payRateUnit];
 	return { value: parseFloat(newValue.toFixed(2)), unit: payRateUnit };
 }
+
+/**
+ * Calculates the margin percentage between a base value and an actual value.
+ *
+ * ```ts
+ * margin(100, 150); // 50
+ * margin(200, 100); // -50
+ * margin(0, 100); // undefined (avoids division by zero)
+ * margin(null, 100); // undefined
+ * margin(100, null); // undefined
+ * ```
+ *
+ * @param base Cost (or Base Value) – the original or maximum reference value (e.g. cost price, max rate).
+ * @param actual Current or Actual Value – the value you compare against the base (e.g. selling price, current rate).
+ */
+export function margin(base: Maybe<number>, actual: Maybe<number>) {
+	if (actual == null || base == null) return undefined;
+	if (base === 0) return undefined;
+	return ((actual - base) / base) * 100;
+}
