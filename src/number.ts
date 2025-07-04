@@ -207,6 +207,7 @@ export function convertPayRate(
 
 /**
  * Calculates the margin percentage between a base value and an actual value.
+ * For the margin to be positive, the actual value must be greater than the base value.
  *
  * ```ts
  * margin(100, 150); // 50
