@@ -44,20 +44,22 @@ export function initials(name: Maybe<string>): Optional<string> {
  * There are cases where important information is at the end of the string and truncating the end isn't helpful.
  * This function solves that.
  *
- * @license https://github.com/kahwee/truncate-middle#license
- * @param str - String to be truncated
- * @param frontLen - Number of characters to be remained in front
- * @param backLen - Number of characters to be remained at the back
- * @param truncateStr - String that replaces the truncated portion
- * @returns Truncated string. Defaults to '&hellip;' if unspecified
+ * ```ts
+ * truncateMiddle('very-long-file-name.txt', 10, 4); // 'very-long...name.txt'
+ * truncateMiddle('Hello, world!', 5, 6); // 'Hello...world!'
+ * truncateMiddle('Hello, world!', 5, 0); // 'Hello...'
+ * truncateMiddle('Hello, world!', 0, 6); // '...world!'
+ * truncateMiddle('Hello, world!', 0, 0); // 'Hello, world!'
+ * truncateMiddle(null, 5, 6); // undefined
+ * ```
  */
 export function truncateMiddle(
 	str: Maybe<string>,
 	frontLen: number = 0,
 	backLen: number = 0,
 	truncateStr: string = '&hellip;',
-): string {
-	if (str == undefined) return '';
+): string | undefined {
+	if (str == undefined) return undefined;
 
 	const strLen = str.length;
 	// Round to nearest integer instead of floor to fix decimal parameter test
