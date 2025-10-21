@@ -81,3 +81,22 @@ export function truncateMiddle(
 		);
 	}
 }
+
+/**
+ * Safely parses a JSON string, returning `undefined` if parsing fails.
+ *
+ * ```ts
+ * safeParse<{ a: number }>('{"a": 1}'); // { a: 1 }
+ * safeParse<{ a: number }>('invalid json'); // undefined
+ * safeParse<{ a: number }>(null); // undefined
+ * ```
+ */
+export function safeParse<T>(jsonString: Maybe<string>): T | undefined {
+	if (typeof jsonString !== 'string') return undefined;
+
+	try {
+		return JSON.parse(jsonString) as T;
+	} catch {
+		return undefined;
+	}
+}
